@@ -16,7 +16,7 @@ class DevSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => "Developer",
-            'email' => 'munna@dev.com',
+            'email' => 'rizvi@dev.com',
             'password' => Hash::make('12345678'),
             'role' => 'admin',
         ]);
