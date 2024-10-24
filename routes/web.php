@@ -16,6 +16,8 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
 Auth::routes(['register' => false]);
+Auth::routes(['verify' => true]);
+
 
 
 // frontend
@@ -40,6 +42,7 @@ Route::middleware(['auth','verified'])->group(function(){
 
 // dashboard home
 Route::get('/home',[HomeController::class,'index'])->name('dashboard');
+Route::get('/home', [HomeController::class, 'index'])->middleware('verified');
 
 // profile
 Route::get('/profile',[ProfileController::class,'index'])->name('profile.index');
@@ -102,3 +105,6 @@ Route::post('/email/verification-notification', function (Request $request) {
 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
+
